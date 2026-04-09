@@ -62,7 +62,7 @@ export default function LineagePage() {
 
   const loadCategories = async () => {
     try {
-      const res = await fetch('${API_BASE}/lineage/categories')
+      const res = await fetch(`${API_BASE}/lineage/categories`)
       if (res.ok) {
         const data = await res.json()
         setCategories(data)
@@ -77,7 +77,7 @@ export default function LineagePage() {
     try {
       const url = categoryId
         ? `${API_BASE}/lineage/records?category_id=${categoryId}`
-        : '${API_BASE}/lineage/records'
+        : `${API_BASE}/lineage/records`
       const res = await fetch(url)
       if (res.ok) {
         const data = await res.json()
@@ -131,7 +131,7 @@ export default function LineagePage() {
     console.log('Dialect:', dialect)
     setIsAiParsing(true)
     try {
-      const response = await fetch('${API_BASE}/ai/parse-lineage', {
+      const response = await fetch(`${API_BASE}/ai/parse-lineage`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ sql, dialect, useAI: false })
@@ -223,7 +223,7 @@ export default function LineagePage() {
   const handleAiParseInternal = async () => {
     setIsAiParsing(true)
     try {
-      const response = await fetch('${API_BASE}/ai/parse-lineage', {
+      const response = await fetch(`${API_BASE}/ai/parse-lineage`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ sql, dialect, useAI: true })
@@ -307,7 +307,7 @@ export default function LineagePage() {
     const displayData = aiResult ? aiResult : { mappings: MAPPING, nodes: LINEAGE_NODES, edges: LINEAGE_EDGES }
 
     try {
-      const response = await fetch('${API_BASE}/lineage/records', {
+      const response = await fetch(`${API_BASE}/lineage/records`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
